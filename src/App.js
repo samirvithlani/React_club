@@ -3,7 +3,7 @@ import './App.css';
 import Header from './MyComponents/Header';
 import { Footer } from './MyComponents/Footer';
 import { EmployeeList } from './MyComponents/EmployeeList';
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import { AddEmployee } from './MyComponents/AddEmployee';
 import { Route, Switch } from 'react-router-dom';
 import { Welcome } from './pages/Welcome';
@@ -16,10 +16,12 @@ import { Userdetail } from './api/User-detail';
 import { AddUser } from './api/AddUser';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
-;
+import { Child } from './Child';
 
 
 
+//this is obejct of contect
+export const GlobleInfo = createContext();
 
 function App() {
 
@@ -130,34 +132,21 @@ function App() {
     }
   }
 
+
+  /*   use state number value  color --->*/
+
+  //login profile --> detail -->
+  const [color, setcolor] = useState('blue')
+
   return (
 
+    <GlobleInfo.Provider value ={{color:color}}>
     <div>
-
-      <button onClick={fetchUserData}>FETCH DATA</button>
-      <button onClick={fetchFiles}>FETCH FILE</button>
-      <button onClick={addUser}>ADD USER</button>
-
-        <ToastContainer/>
-      <Route path="/" exact>
-
-        {isLoading && <p>LOADING .....</p>}
-        {/* is error message */}
-        {isError && <p>{isError}</p>}
-        {!isError && <UsersList users={users} />}
-
-
-
-      </Route>
-
-      <Route path="/adduser">
-        <AddUser addUser={addUser} />
-      </Route>
-
-      <Route path="/user/:id" exact>
-        <Userdetail />
-      </Route>
+      <h1 style = {{color:color}}>APP JS</h1>
+      {/* props */}
+      <Child/>
     </div>
+    </GlobleInfo.Provider>
   )
 
 }
