@@ -17,6 +17,7 @@ import { AddUser } from './api/AddUser';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 import { Child } from './Child';
+import { FileUploader } from './pages/FileUploader';
 
 
 
@@ -142,9 +143,11 @@ function App() {
 
     <GlobleInfo.Provider value ={{color:color}}>
     <div>
-      <h1 style = {{color:color}}>APP JS</h1>
+      {/* <h1 style = {{color:color}}>APP JS</h1> */}
       {/* props */}
-      <Child/>
+      {/* <Child/> */}
+
+      <FileUploader/>
     </div>
     </GlobleInfo.Provider>
   )
